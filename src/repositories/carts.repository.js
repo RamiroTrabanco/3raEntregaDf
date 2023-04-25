@@ -1,21 +1,29 @@
+import ProductManager from "../dao/mongoManagers/ProductManager.js";
+import { cartsModel } from "../dao/mongoManagers/models/carts.model.js";
+import mongoose from "mongoose";
+
+const productManager = new ProductManager()
+
 export default class CartsRepository{
 
     async addProductToCart(cartId, prodId) {
         const cart = await cartsModel.findById(cartId);
-        const product = await productManager.getProductById(prodId);
-        console.log(product);
+        const product = await productManager.getProductsById(prodId);
     
         if (!product) {
             throw new Error(`El producto no existe.`);
         }
     
-        const cartProduct = cart.products.find((prod) => prod._id.toString() === prodId.toString());
+        const cartProduct = cart.products.find((prod) => prod._id.toString() === prod);
+        console.log(cart.products);
+        
     
         if (!cartProduct) {
-            cart.products.push({
-                pid: prodId,
-                quantity: 1,
-            });
+            const newProd = {
+                _id: prodId,
+                quantity: 1
+            }
+            cart.products.push(newProd);
         } else {
             cartProduct.quantity += 1;
         }

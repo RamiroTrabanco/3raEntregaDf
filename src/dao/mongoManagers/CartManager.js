@@ -1,8 +1,8 @@
 import CartsRepository from "../../repositories/carts.repository.js";
-import { cartsModel } from "./models/carts.model.js";
+import { cartsModel } from "./models/carts.model.js";/* 
 import ProductManager from "./ProductManager.js";
 
-const productManager = new ProductManager()
+const productManager = new ProductManager() */
 const cartsRepository = new CartsRepository()
 
 export default class CartManager{
@@ -32,6 +32,7 @@ export default class CartManager{
             return error
         }
     }
+    
     async addProductToCart(cartId, prodId){
         try {
         const prod = await cartsRepository.addProductToCart(cartId, prodId)
