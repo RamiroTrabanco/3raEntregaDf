@@ -1,0 +1,17 @@
+<h3>Bienvenido {{name}}</h3>
+<button onclick="location.href='/users/logout'" id="logout">Cerrar sesión</button>
+{{#each products}}
+<FORM id="form">
+    <h3> {{title}}</h3>
+    <p>description: {{description}}</p>
+    <p>price: {{price}}</p>
+    <p>code: {{code}}</p>
+    <p>stock: {{stock}}</p>
+    <p>category: {{category}}</p>
+    <p>thumbnails: {{thumbnails}}</p>
+    <p>id: <p id="pid">{{id}}</p></p>
+    <button type="submit" id="btnToCart">Agregar al carrito</button>
+</FORM>
+{{/each}}
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
