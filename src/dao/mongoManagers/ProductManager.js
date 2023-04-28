@@ -48,4 +48,13 @@ export default class ProductManager{
             return error
         }
     }
+
+    async updateProductStock(pid, stock){
+        try {
+            const updProdStock = await productsRepository.updateProductStock(pid, stock)
+            return updProdStock
+        } catch (error) {
+            
+        }
+    }
 }

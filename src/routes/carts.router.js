@@ -18,6 +18,6 @@ router.put("/:cid", updateCartController)
 
 router.put("/:cid/products/:pid", updateQuantController)
 
-router.post("/:cid/purchase", purchaseCartController)
+router.get("/:cid/purchase", purchaseCartController)
 
 export default router

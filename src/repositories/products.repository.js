@@ -46,7 +46,7 @@ export default class ProductsRepository {
     }
 
     async updateProductStock(productId, newStock) {
-        const result = await productModel.findOneAndUpdate(
+        const result = await productsModels.findOneAndUpdate(
         { _id: productId },
         { stock: newStock },
         { new: true }
