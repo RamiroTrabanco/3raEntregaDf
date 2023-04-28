@@ -8,7 +8,7 @@ router.get("/GET/:cid", getCartByIdController)
 
 router.post("/POST", addCartController)
 
-router.post("/POST/:cid/product/:pid", onlyUser, addProductToCartController)
+router.post("/POST/:cid/product/:pid", /* onlyUser, */ addProductToCartController)
 
 router.delete("/:cid/", deleteCartController)
 
