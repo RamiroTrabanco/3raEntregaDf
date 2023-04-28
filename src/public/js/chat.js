@@ -24,6 +24,14 @@ if(userN == null){
     })
 }
 
+
+socketClient.on("chat", messages=>{
+    const chatRender = messages.map(el=>{
+        return `<p><strong>${el.user}:</strong>${el.message}</p>`
+    }).join (" ")
+    chat.innerHTML = chatRender
+})
+
 form.onsubmit = (e) =>{
     e.preventDefault()
     const info = {
@@ -33,10 +41,3 @@ form.onsubmit = (e) =>{
     socketClient.emit("message", info)
     message.value = ""
 }
-
-socketClient.on("chat", messages=>{
-    const chatRender = messages.map(el=>{
-        return `<p><strong>${el.user}:</strong>${el.message}</p>`
-    }).join (" ")
-    chat.innerHTML = chatRender
-})

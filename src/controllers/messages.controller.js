@@ -5,7 +5,7 @@ const msgManager = new MessageManager()
 
 export const getMsg = async (req, res) => {
     const msgs = await msgManager.getMsgs()
-}
+
 
 socketServer.on("connection", socket=>{
     console.log(`Usuario conectado: ${socket.id}`)
@@ -27,4 +27,4 @@ socketServer.on("connection", socket=>{
     socketServer.emit("chat", msgs)
 })
 
-res.render("chat")
+res.render("chat")}

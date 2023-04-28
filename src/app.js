@@ -42,6 +42,16 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
+/* http server */
+const httpServer = app.listen(PORT, () => {
+  console.log(`Server OK en puerto ${PORT}`)
+})
+
+/* websocket server */
+
+export const socketServer = new Server(httpServer)
+
+
 /* redirect login */
 app.get("/", (req,res)=>{
   res.redirect("/views")
@@ -52,14 +62,7 @@ app.engine('handlebars',handlebars.engine())
 app.set('view engine','handlebars')
 app.set('views',__dirname+'/views')
 
-/* http server */
-const httpServer = app.listen(PORT, () => {
-    console.log(`Server OK en puerto ${PORT}`)
-})
 
-/* websocket server */
-
-export const socketServer = new Server(httpServer)
 
 
 /* views */
