@@ -7,6 +7,6 @@ export default class MsgRepository{
         return msgs
     }
     createMsg = async (message) =>{
-    const msg = await messageModel.create(info)
+    const msg = await messageModel.create(message)
     return msg}
 }

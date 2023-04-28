@@ -12,9 +12,10 @@ export default class MessageManager{
         }
     }
 
-    async createMsg() {
+    async createMsg(message) {
         try {
-            const msg = await messageRepository.createMsg(msg)
+            const msg = await messageRepository.createMsg(message)
+            return msg
         } catch (error) {
             return error
         }
