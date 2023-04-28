@@ -1,6 +1,5 @@
 import ProductManager from "../dao/mongoManagers/ProductManager.js";
 import { cartsModel } from "../dao/mongoManagers/models/carts.model.js";
-import mongoose from "mongoose";
 
 const productManager = new ProductManager()
 
@@ -14,9 +13,7 @@ export default class CartsRepository{
             throw new Error(`El producto no existe.`);
         }
     
-        const cartProduct = cart.products.find((prod) => prod._id.toString() === prod);
-        console.log(cart.products);
-        
+        const cartProduct = cart.products.find((prod) => prod._id == prodId);
     
         if (!cartProduct) {
             const newProd = {

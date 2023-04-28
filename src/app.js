@@ -3,10 +3,11 @@ import productsRouter from "./routes/products.router.js"
 import cartsRouter from "./routes/carts.router.js"
 import viewProds from "./routes/viewProds.router.js"
 import viewCart from "./routes/viewCart.router.js"
+import chatRouter from "./routes/chat.router.js"
 import handlebars from "express-handlebars"
 import {__dirname} from "./utils.js"
+import {Server} from "socket.io"
 import "./dao/mongoManagers/dbConfig.js"
-import { Server } from "socket.io"
 import cookieParser from "cookie-parser"
 import session from "express-session"
 import viewsRouter from "./routes/views.router.js"
@@ -56,14 +57,10 @@ const httpServer = app.listen(PORT, () => {
     console.log(`Server OK en puerto ${PORT}`)
 })
 
-/* const socketServer = new Server(httpServer);
-socketServer.on("connection",(socket)=>{
-    console.log(`Usuario conectado: ${socket.id}`)
-    socket.on("prodToCart", async prod => {
-        const addProd = await cartManager.addProductToCart("6407886118c23af73d1197dc", prod.id)
-        return addProd
-    })
-}) */
+/* websocket server */
+
+export const socketServer = new Server(httpServer)
+
 
 /* views */
 app.use("/products/", viewProds)
@@ -73,3 +70,4 @@ app.use("/api/carts", cartsRouter)
 app.use("/users", usersRouter)
 app.use("/views", viewsRouter)
 app.use("/api/sessions", sessionsRouter)
+app.use("/chat", chatRouter)
