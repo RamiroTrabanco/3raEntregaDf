@@ -1,6 +1,9 @@
 import CartManager from "../dao/mongoManagers/CartManager.js";
+import ProductManager from "../dao/mongoManagers/ProductManager.js";
+import {ticketModel} from "../dao/mongoManagers/models/ticket.model.js"
 
 const cartManager = new CartManager()
+const productManager = new ProductManager()
 
 export const getCartByIdController = async (req, res) => {
     const {cid} = req.params
@@ -59,7 +62,26 @@ export const viewCartController = async(req, res)=>{
 
 export const purchaseCartController = async(req,res)=>{
     try {
-        
+        const {cid} = req.params
+        const getCart = await cartManager.getCartsById(cid)
+        let total = 0
+        const cartProducts = getCart.products
+        for (let i = 0; i < cartProducts.length; i++){
+            const product = cartProducts[i]
+            const dbProduct = await productManager.getProductsById(product._id)
+            if (product.quantity <= dbProduct.stock){
+                total += product.quantity * dbProduct.price
+                const updStock = dbProduct.stock - product.quantity
+                await productManager.updateProductStock(dbProduct._id, updStock)
+                const ticket = await ticketModel.create({purchaser: req.session.user.mail, amount: total})
+                res.json(ticket)
+            }
+            else {
+                const deleteProd = await cartManager.deleteProductOnCart(cid, dbProduct)
+                getCart.save()
+                res.json(product._id)
+            }
+        }
     } catch (error) {
         return error
     }

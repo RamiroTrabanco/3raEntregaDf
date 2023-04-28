@@ -44,4 +44,13 @@ export default class ProductsRepository {
         const addNewProd = await this.addProducts(newProd)
         return newProd
     }
+
+    async updateProductStock(productId, newStock) {
+        const result = await productModel.findOneAndUpdate(
+        { _id: productId },
+        { stock: newStock },
+        { new: true }
+        )
+        return result
+      }
 }
