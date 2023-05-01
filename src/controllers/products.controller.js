@@ -1,6 +1,8 @@
 import ProductManager from "../dao/mongoManagers/ProductManager.js"
+import UsersManager from "../dao/mongoManagers/UsersManager.js"
 
 const productManager = new ProductManager()
+const userManager = new UsersManager()
 
 export const getProductsController = async (req, res) => {
     const {limit=10, page=1, sort, ...query} = req.query
@@ -36,10 +38,15 @@ export const deleteProductController = async(req, res)=>{
 }
 
 export const viewProdsController = async (req, res)=>{
-    try {                                   
+    try {                                 
+    const { user } = req
     const {limit=10, page=1, sort, ...query} = req.query
     const products = await productManager.getProducts(limit, page, sort, query)
-    res.render("products", {products: products.payload})
+    const usr = await userManager.findUserByEmail(user.email)
+    const productsWithCartId = products.payload.map(product => {
+        return { ...product, cartId: usr.cartId }
+    })
+    res.render("products", {usr: usr.toObject(), products: productsWithCartId})
     } catch (error) {
         return error
     }

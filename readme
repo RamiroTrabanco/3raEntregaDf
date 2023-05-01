@@ -1,0 +1,40 @@
+Rutas:
+
+carts.router:
+
+GET: localhost:8080/api/carts/get/:cid              Devuelve JSON, carrito con productos Ej: localhost:8080/api/carts/get/645032af31579756114d0902
+
+POST: localhost:8080/api/carts/post                 Crea carrito, también se crea al crear usuario y loguearse
+
+POST: localhost:8080/api/carts/post/:cid/products/:pid Agrega producto a un carrito específico. Ej: http://localhost:8080/api/carts/POST/645032af31579756114d0902/product/64078a5a99ac8dc5858ad25d
+
+DELETE: localhost:8080/api/carts/:cid               Borra carrito
+
+DELETE: localhost:8080/api/carts/:cid/products/:pid Borra producto del carrito
+
+GET: localhost:8080/api/carts/:cid/purchase         Compra el carrito y crea ticket. Ej: http://localhost:8080/api/carts/645032af31579756114d0902/purchase
+
+
+chat.router:
+
+GET: localhost:8080/chat/                           Ruta a la vista del chat
+
+
+products.router:
+
+GET: localhost:8080/api/products/get                 Devuelve JSON de todos los productos
+
+GET: localhost:8080/api/products/get/:pid            Devuelve JSON de producto en específico. Ej: http://localhost:8080/api/products/get/64078a4899ac8dc5858ad25b
+
+POST: localhost:8080/api/products/post               Crea producto a través del body de la request
+
+PUT: localhost:8080/api/products/put/:pid            Actualiza producto
+
+DELETE: localhost:8080/api/products/delete/:pid      Elimina producto
+
+
+sessions.router:
+
+GET: localhost:8080/api/sessions/current             Al estar logueado, devuelve datos a través del dto
+
+

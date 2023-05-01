@@ -1,6 +1,5 @@
 import UsersManager from "../dao/mongoManagers/UsersManager.js";
 import { generateToken } from "../utils.js";
-import passport from "passport";
 
 const userManager = new UsersManager()
 

@@ -19,17 +19,22 @@ export default class UsersManager {
         } 
     }
 
-    async findUserByEmail({email}){
+    async findUserByEmail(email){
         const user = await userModel.findOne({email})
         return user
     }
 
     async updateOne(idUser, idCart){
         try {
-            const updateUser = await userModel.updateOne({_id:idUser},{$set:{cart:idCart}})
+            const updateUser = await userModel.updateOne({_id:idUser},{$set:{cartId:idCart}})
             return updateUser
         } catch (error) {
             return error
         }
+    }
+
+    async findUserCart(email){
+        const user = await userModel.findOne({email})
+        return user.cartId
     }
 }

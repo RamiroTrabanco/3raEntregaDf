@@ -60,12 +60,11 @@ export default class CartsRepository{
         const findProd = cartById.products.find(prod=>prod.id===pid)
         const prodNewQuant = {
             id: pid,
-            quantity: quant
+            quantity: quant.quantity
         }
         const indexProd = cartById.products.indexOf(findProd)
         cartById.products.splice(indexProd, 1)
         cartById.products.push(prodNewQuant)
-        console.log(cartById.products)
         await cartById.save()
         return cartById
     }

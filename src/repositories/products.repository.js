@@ -26,6 +26,7 @@ export default class ProductsRepository {
         }
         return prodsPag
     }
+    
 
     async updateProduct(prod){
         const prodToUpdate = await productsModels.findById(prod.id)
@@ -52,5 +53,5 @@ export default class ProductsRepository {
         { new: true }
         )
         return result
-      }
+    }
 }

@@ -1,11 +1,6 @@
 import { Router } from "express";
-import UsersManager from "../dao/mongoManagers/UsersManager.js";
 import passport from "passport";
-import { generateToken } from "../utils.js";
 import { logoutController, registerUserController } from "../controllers/users.controller.js";
-
-
-const usersManager = new UsersManager()
 
 const router = Router()
 

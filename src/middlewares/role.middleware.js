@@ -15,7 +15,7 @@ export const onlyAdm = async(req, res, next)=>{
 export const onlyUser = async(req, res, next)=>{
     try {
         const {user} = req
-        if (user.role === "user" || undefined){
+        if (user.role === "user"){
         next()
     }else { 
         return res.status(400).send({ message: 'No autorizado' })
