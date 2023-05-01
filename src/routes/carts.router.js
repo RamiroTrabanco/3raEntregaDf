@@ -1,6 +1,7 @@
 import { Router } from "express"
 import {getCartByIdController, addCartController, addProductToCartController, deleteProductOnCartController, deleteCartController, updateCartController, updateQuantController, purchaseCartController} from "../controllers/carts.controller.js"
 import { onlyUser } from "../middlewares/role.middleware.js"
+import passport from "passport"
 
 const router = Router()
 
@@ -8,7 +9,7 @@ router.get("/GET/:cid", getCartByIdController)
 
 router.post("/POST", addCartController)
 
-router.post("/POST/:cid/product/:pid", /* onlyUser, */ addProductToCartController)
+router.post("/POST/:cid/product/:pid", passport.authenticate("jwt", {session:false}),  onlyUser, addProductToCartController)
 
 router.delete("/:cid/", deleteCartController)
 
