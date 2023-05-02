@@ -59,7 +59,7 @@ export default class CartsRepository{
         const cartById = await cartsModel.findById(cid)
         const findProd = cartById.products.find(prod=>prod.id===pid)
         const prodNewQuant = {
-            id: pid,
+            _id: pid,
             quantity: quant.quantity
         }
         const indexProd = cartById.products.indexOf(findProd)
