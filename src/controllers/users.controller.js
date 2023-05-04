@@ -14,9 +14,14 @@ export const registerUserController = async (req, res)=>{
     }
 }
 
-export const logoutController = async (req,res)=>{
+/* export const logoutController = async (req,res)=>{
     req.session.destroy(error=>{
         if(error){console.log(error)}
         res.redirect("/views")
     })
-}
+} */
+
+export const logoutController = async (req, res) => {
+    res.clearCookie("token");
+    res.redirect("/views");
+  };

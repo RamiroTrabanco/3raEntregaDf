@@ -35,7 +35,7 @@ export default class UsersRepository {
         await usr.save();
         return usr;
         } else {
-        return null;
+        throw new Error;
         }
     }
 }

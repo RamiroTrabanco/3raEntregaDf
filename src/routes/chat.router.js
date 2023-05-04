@@ -5,6 +5,6 @@ import passport from "passport";
 
 const router = Router()
 
-router.get("/", passport.authenticate("jwt", {session:false}), onlyUser, getMsg)
+router.get("/", onlyUser, getMsg)
 
 export default router
