@@ -9,10 +9,10 @@ router.get("/GET", getProductsController)
 
 router.get("/GET/:pid", getProductsByIdController)
 
-router.post("/POST", passport.authenticate("jwt", {session:false}), onlyAdm, addProductsController)
+router.post("/POST",  onlyAdm, addProductsController)
 
-router.put("/PUT/:pid", passport.authenticate("jwt", {session:false}), onlyAdm, updateProductController)
+router.put("/PUT/:pid",  onlyAdm, updateProductController)
 
-router.delete("/DELETE/:pid", passport.authenticate("jwt", {session:false}), onlyAdm, deleteProductController)
+router.delete("/DELETE/:pid",  onlyAdm, deleteProductController)
 
 export default router
